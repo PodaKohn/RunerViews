@@ -9,19 +9,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Re-Estrena - Iniciar sesión</title>
-    <link rel="stylesheet" href="~/css/login.css">
+    <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
     <header class="header-login">
-        <div class="logo-container">
+        <div>
             <img src="~/images/logo.png" alt="Logo Re-Estrena" class="logo">
             <h1>RE-ESTRENA</h1>
         </div>
     </header>
 
-    <main class="main-login">
+    <main class = "fotito">
         <section class="login-box">
-            <div class="login-content">
+            <div>
                 <h2>¿Ya tienes cuenta?</h2>
                 
                 <form asp-controller="OnBoarding" asp-action="loginGuardar" method="post">
@@ -35,9 +35,9 @@
                 </form>
 
                 <section class="registrate">
-                    <div class="registro-container">
+                    <div>
                         <p>¿No tienes cuenta?</p>
-                        <a asp-controller="OnBoarding" asp-action="registro" class="btn-registro">Registrarse</a>
+                        <a asp-controller="OnBoarding" asp-action="registro">Registrarse</a>
                     </div>
                 </section>
             </div>

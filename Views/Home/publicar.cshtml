@@ -10,14 +10,14 @@
     <header>
         <div class="header-bar">
             <img src="logo.png" alt="Logo Re-Estrena" class="logo">
-        <a href="@Url.Action('VerPaginaPrincipalC', 'AccountController')">RE-ESTRENA</a>
+        <a href="@Url.Action('VerPaginaPrincipalC', 'Account')">RE-ESTRENA</a>
             <nav class="menu-bar">
                 <a href='@Url.Action("LandingPage", "Home")'>Comprar</a>
-                <a href='@Url.Action("SubirPublicacion", "Publicacion")'><img src="plus_icon.png" alt="Subir" title="Subir publicación"></a>
-                <a href='@Url.Action("VerCarrito", "Carrito")'><img src="cart_icon.png" alt="Carrito" title="Carrito"></a>
-                <a href='@Url.Action("VerUsuario", "Usuario")'><img src="user_icon.png" alt="Usuario" title="Perfil usuario"></a>
-                <a href='@Url.Action("VerNotificaciones", "Notificaciones")'><img src="bell_icon.png" alt="Notificaciones" title="Notificaciones"></a>
-                <a href='@Url.Action("VerMensajes", "Mensajes")'><img src="msg_icon.png" alt="Mensajes" title="Mensajes"></a>
+                <a href='@Url.Action("SubirPublicacion", "Post")'><img src="plus_icon.png" alt="Subir" title="Subir publicación"></a>
+                <a href='@Url.Action("VerCarrito", "Home")'><img src="cart_icon.png" alt="Carrito" title="Carrito"></a>
+                <a href='@Url.Action("VerUsuario", "Home")'><img src="user_icon.png" alt="Usuario" title="Perfil usuario"></a>
+                <a href='@Url.Action("VerNotificaciones", "Home")'><img src="bell_icon.png" alt="Notificaciones" title="Notificaciones"></a>
+                <a href='@Url.Action("VerMensajes", "Home")'><img src="msg_icon.png" alt="Mensajes" title="Mensajes"></a>
                 <a href='@Url.Action("CerrarSesion", "Account")'><img src="logout_icon.png" alt="Cerrar sesión" title="Cerrar sesión"></a>
             </nav>
         </div>
@@ -27,7 +27,7 @@
         <section class="nueva-publicacion">
             <div class="formulario">
                 <div class="columna-izquierda">
-                    <form enctype="multipart/form-data" method="post" asp-action="SubirPublicacion" asp-controller="Publicacion">
+                    <form enctype="multipart/form-data" method="post" asp-action="SubirPublicacion" asp-controller="Post">
                         <label for="foto" class="subir-foto-btn">
                             <span>Subir foto</span>
                             <input type="file" id="foto" name="foto" style="display:none;">
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="columna-derecha">
-                    <form enctype="multipart/form-data" method="post" asp-action="SubirPublicacion" asp-controller="Publicacion">
+                    <form enctype="multipart/form-data" method="post" asp-action="SubirPublicacion" asp-controller="Post">
                         <textarea name="descripcion" placeholder="Información del producto"></textarea>
                         <input type="text" name="etiquetas" placeholder="Agregar etiquetas">
                         <input type="number" name="precio" placeholder="Precio">
