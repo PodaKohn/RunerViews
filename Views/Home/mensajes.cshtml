@@ -1,0 +1,97 @@
+@{
+    bool esVendedor = ViewBag.ParaVendedor == true;
+    var mensajesLista = esVendedor ? ViewBag.MensajesVendedor : ViewBag.MensajesComprador;
+    var chatActual = ViewBag.ChatActual; // Debe tener {Contacto, Mensajes: [{Texto, Fecha, EsPropio}]}
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Re-Estrena - Mensajes</title>
+    <link rel="stylesheet" href="~/Content/estilo.css">
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <img src="~/images/logo.png" alt="Logo Re-Estrena">
+            <h1>RE-ESTRENA</h1>
+            @if (esVendedor)
+            {
+                <a href="@Url.Action("LandingPage", "Home")">Vender</a>
+                <a href="@Url.Action("SubirPublicacion", "Publicacion")"><img src="~/images/plus_icon.png" alt="Subir" title="Subir publicación"></a>
+            }
+            else
+            {
+                <a href="@Url.Action("LandingPage", "Home")">Comprar</a>
+                <a href="@Url.Action("VerCarrito", "Carrito")"><img src="~/images/cart_icon.png" alt="Carrito" title="Carrito"></a>
+            }
+            <a href="@Url.Action("VerUsuario", "Usuario")"><img src="~/images/user_icon.png" alt="Usuario" title="Perfil usuario"></a>
+            <a href="@Url.Action("VerFavoritos", "Favoritos")"><img src="~/images/favoritos_icon.png" alt="Favoritos" title="Favoritos"></a>
+            <a href="@Url.Action("VerNotificaciones", "Notificaciones")"><img src="~/images/bell_icon.png" alt="Notificaciones" title="Notificaciones"></a>
+            <a href="@Url.Action("CerrarSesion", "Account")"><img src="~/images/logout_icon.png" alt="Cerrar sesión" title="Cerrar sesión"></a>
+        </div>
+    </header>
+    
+    <main>
+        <section>
+            <h2>Mensajes</h2>
+            <ul>
+                @if (mensajesLista != null)
+                {
+                    foreach (var m in mensajesLista)
+                    {
+                        <li>
+                            <strong>@m.Contacto</strong><br />
+                            @m.UltimoMensaje
+                            <small>@m.FechaUltimo</small>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <li>No tenés mensajes</li>
+                }
+            </ul>
+        </section>
+
+        <section>
+            @if (chatActual != null)
+            {
+                <h3>Chat con @chatActual.Contacto</h3>
+                @if (chatActual.Mensajes != null && chatActual.Mensajes.Count > 0)
+                {
+                    foreach (var msj in chatActual.Mensajes)
+                    {
+                        <p class="@(msj.EsPropio ? "msg-propio" : "msg-ajeno")">
+                            @msj.Texto
+                            <br />
+                            <small>@msj.Fecha</small>
+                        </p>
+                    }
+                }
+                else
+                {
+                    <p>No hay mensajes en este chat.</p>
+                }
+            }
+            else
+            {
+                <h3>Seleccioná un chat</h3>
+            }
+
+            <form method="post" action="@Url.Action("EnviarMensaje", "Mensajes")">
+                <label for="mensaje">Escribí tu mensaje:</label><br>
+                <input type="text" id="mensaje" name="mensaje" placeholder="Escribí tu mensaje" autocomplete="off" />
+                <input type="hidden" name="contacto" value="@(chatActual != null ? chatActual.Contacto : "")" />
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© Copyright - Todos los derechos reservados a Re-Estrena</p>
+    </footer>
+</body>
+</html>

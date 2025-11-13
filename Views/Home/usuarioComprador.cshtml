@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Re-Estrena - Usuario</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+  <main>
+    <section class = "UsuarioC-Perfil">
+      <div>
+        <button href='@Url.Action("", "")'>Subir Foto</button> //deberia abrir la carpeta de archivos de tu compu para que agregues foto. 
+      </div>
+
+      <div>
+        <h2>@ViewBag.Usuario.nombreCompleto</h2>
+        <p>@ViewBag.Usuario.Descripcion</p>
+        <form action='@Url.Action("Formulario", "AccountController")' method = "POST" enctype="multipart/form-data">
+        <textarea name="Descripcion" rows = "10" cols = "50" placeholder = "Descripcion del usuario">
+        </textarea>
+        <button href='@Url.Action("editarUsuario", "AccountController")'>Editar</button>
+        </form>
+      </div>
+    </section>
+
+  <section class = "UsuarioC-Lista">
+    <h3>Favoritas:</h3>
+      <ul>
+        <li>
+          <h4>@ViewBag.Publicacion.NombreProducto</h4>
+          <p>@ViewBag.Publicacion.Descripcion</p>
+          <p>etiquetas</p>
+          <p><b>precio</b></p>
+        </li>
+      </ul>
+  </section>
+
+  <section class = "UsuarioC-Lista">
+    <h3>Wishlist:</h3>
+    <ul>
+        <li>
+          <h4>@ViewBag.Publicacion.NombreProducto</h4>
+          <p>@ViewBag.Publicacion.Descripcion</p>
+          <p>etiquetas</p>
+          <p><b>precio</b></p>
+        </li>
+      </ul>
+  </section>
+
+  <section>
+    <button>Cerrar sesión</button>
+  </section>
+
+</main>
+
+<footer>
+  <p>© Copyright - Todos los derechos reservados a Re-Estrena</p>
+</footer>
+</body>
+
+</html>
